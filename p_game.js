@@ -122,6 +122,7 @@ var keysDown = {};
 window.addEventListener("keydown", function(event) {
   keysDown[event.keyCode] = true;
   //console.log(keysDown);
+  //test
 });
 window.addEventListener("keyup", function(event) {
   delete keysDown[event.keyCode];
