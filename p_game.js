@@ -155,6 +155,7 @@ Paddle.prototype.move = function(x, y) {
 }
 Computer.prototype.update = function(ball) {
   var y_pos = ball.y;
+  
   var diff = -((this.paddle.y + (this.paddle.height / 2)) - y_pos);
   if(diff < 0 && diff < -4) { // max speed top
     diff = -5;
