@@ -187,7 +187,7 @@ function AI(){
     this.grab_data = true;                      // enables/disables data grabbing
     this.flip_table = true;                     // flips table
     this.keep_trainig_records = true;           // keep some number of training records instead of discardin them each session
-    this.training_records_to_keep = 100000;     // number of training records to keep
+    this.training_records_to_keep = 10000;     // number of training records to keep
     this.first_strike = true;
 }
 // saves data from current frame of a game
@@ -297,6 +297,7 @@ AI.prototype.write_file=function(){
         //[0,1,0]=for [1](no change)
         //[0,0,1]=for [0](down)
       }
+    console.log(len);
     console.log('reached');
     console.log(data_xs);
     console.log(data_ys);
@@ -307,7 +308,7 @@ AI.prototype.write_file=function(){
     a.click();
   //reset
   this.previous_data = null;
-   if(!this.keep_trainig_records)
-        this.training_data = [[], [], []];
+  if(!this.keep_trainig_records)
+      this.training_data = [[], [], []];
   this.turn = 0;
 }
