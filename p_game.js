@@ -61,6 +61,8 @@ function Ball(x, y) {
   this.x_speed = 3;
   this.y_speed = 0
   this.radius = 5;
+  this.score_ai = 0;
+  this.score_player=0;
 }
 Ball.prototype.render = function() {
   context.beginPath();
@@ -88,11 +90,22 @@ Ball.prototype.update = function(paddle1, paddle2) {
     this.y_speed = -this.y_speed;
   }
 
-  if(this.x < 0 || this.x > 600) { // a point was scored
+  if(this.x < 0) { // a point was scored by the player
     this.x_speed = 3;
     this.y_speed = 0;
     this.x = 300;
     this.y = 200;
+    this.score_player=this.score_player+1;
+    document.getElementById('playerscore').innerHTML = "Player score - "+this.score_player;
+    ai.new_turn();
+  }
+  if(this.x < 0 || this.x > 600) { // a point was scored by the ai
+    this.x_speed = 3;
+    this.y_speed = 0;
+    this.x = 300;
+    this.y = 200;
+    this.score_ai=this.score_ai+1;
+    document.getElementById('aiscore').innerHTML = "AI1 score - "+this.score_ai;
     ai.new_turn();
   }
   this.player_strikes = false;
@@ -187,7 +200,7 @@ function AI(){
     this.grab_data = true;                      // enables/disables data grabbing
     this.flip_table = true;                     // flips table
     this.keep_trainig_records = true;           // keep some number of training records instead of discardin them each session
-    this.training_records_to_keep = 3000;     // number of training records to keep
+    this.training_records_to_keep = 4000;     // number of training records to keep
     this.first_strike = true;
 }
 // saves data from current frame of a game
@@ -307,9 +320,5 @@ AI.prototype.write_file=function(){
     a.href = URL.createObjectURL(file);
     a.download = 'training_data.json';
     a.click();
-  //reset
-  this.previous_data = null;
-  if(!this.keep_trainig_records)
-      this.training_data = [[], [], []];
-  
+    context=null;
 }
