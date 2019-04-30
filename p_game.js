@@ -260,13 +260,14 @@ AI.prototype.save_data = function(player, computer, ball){
         }
     }
 }
+
 AI.prototype.new_turn=function(){
-console.log('lost');
-this.turn =this.turn +1;
-console.log(this.turn);
-if(this.turn > 9){
-  this.write_file();
-}
+  console.log('lost');
+  this.turn =this.turn +1;
+  console.log(this.turn);
+  if(this.turn > 9){
+    this.write_file();
+  }
 }
 AI.prototype.write_file=function(){
   console.log('called');
@@ -282,6 +283,9 @@ AI.prototype.write_file=function(){
         }
       }
   len = Math.min(this.training_data[0].length, this.training_data[1].length, this.training_data[2].length);
+
+  document.getElementById('end-game').innerHTML = 'Game ending in : '+len+'/'+this.training_records_to_keep;
+
     //console.log(this.training_data);
     // if it equals zero - we don't have any data to train model on
     if(!len){
@@ -291,10 +295,11 @@ AI.prototype.write_file=function(){
 
     data_xs = [];
     data_ys = [];
-
+    
     if(len < this.training_records_to_keep){
-      this.turn = 0;
-      console.log(len);
+        this.turn = 0;
+        console.log(len);
+        
         return;
       }
 
@@ -311,14 +316,14 @@ AI.prototype.write_file=function(){
         //[0,1,0]=for [1](no change)
         //[0,0,1]=for [0](down)
       }
-    console.log(len);
-    console.log('reached');
-    console.log(data_xs);
-    console.log(data_ys);
-    var a = document.getElementById("a");
-    var file = new Blob([JSON.stringify({xs: data_xs, ys: data_ys})], {type: 'application/json'});
-    a.href = URL.createObjectURL(file);
-    a.download = 'training_data.json';
-    a.click();
-    context=null;
+      console.log(len);
+      console.log('reached');
+      console.log(data_xs);
+      console.log(data_ys);
+      var a = document.getElementById("a");
+      var file = new Blob([JSON.stringify({xs: data_xs, ys: data_ys})], {type: 'application/json'});
+      a.href = URL.createObjectURL(file);
+      a.download = 'training_data.json';
+      a.click();
+      context=null;
 }
