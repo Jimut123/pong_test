@@ -8,13 +8,23 @@
 		top: 20%;
 		left: 20%;
 	}
-	
+	#score-table
+	{
+		position: absolute;
+		top: 10%;
+		left: 20%;
+	}
 	</style>
 </head>
 <body>
 	<div id='mainContent'></div>
-	<p id='aiscore'>AI1 score - 0</p>
-	<p id='playerscore'>Player score - 0</p>
+	<table id="score-table" >
+		<tr>
+			<th id='aiscore'> AI1 score - 0</th>
+			<th> &nbsp;&nbsp;&nbsp; SCORE TABLE FOR PONG-AI &nbsp;&nbsp;&nbsp;</th>
+			<th id='playerscore'> Player score - 0</th>
+		  </tr>
+	</table>
 	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.2"> </script>
 	<script src="p_game.js"></script>
 	<p id="playing"></p>
