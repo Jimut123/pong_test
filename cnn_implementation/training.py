@@ -24,35 +24,37 @@ with open('actions.csv', 'w') as csv:
         while(True):
 
             # 640x480 windowed mode
-            screen=ImageGrab.grab(bbox=(0,0,800,700))
+            screen=ImageGrab.grab(bbox=(390,290,990,695))
             screen = cv2.cvtColor(np.float32(screen), cv2.COLOR_BGR2GRAY)
+            #cv2.imshow('screen',screen)
+            #cv2.waitKey(0)
             screen = cv2.resize(screen, (64,64))
             # resize to something a bit more acceptable for a CNN
             #keys = key_check()
             if keyboard.is_pressed('up arrow'):
-                if c < 1000:#1000 denotes the no of images for up action
+                if c < 10000:#10000 denotes the no of images for up action
                     cv2.imwrite('./images/frame_{0}.jpg'.format(x), screen)
                     csv.write('1\n')
                     print('up')
                     x += 1
                     c += 1
             elif keyboard.is_pressed('down arrow'):
-                if d < 1000:#1000 denotes the no of images for down action
+                if d < 10000:#10000 denotes the no of images for down action
                     cv2.imwrite('./images/frame_{0}.jpg'.format(x), screen)
                     csv.write('2\n')
                     print('down')
                     x += 1
                     d += 1
             else:
-                if t < 1000:#1000 denotes the no of images for nothing action
+                if t < 10000:#10000 denotes the no of images for nothing action
                     cv2.imwrite('./images/frame_{0}.jpg'.format(x), screen)
                     csv.write('0\n')
                     print('nothing')
                     x += 1
                     t += 1
 
-
-            if c == 1000 and t == 1000 and d==1000:
+            print("C = ",c,"/10000","T = ",t,"/10000","D = ",d,"/10000")
+            if c == 10000 and t == 10000 and d==10000:
                 csv.close()
                 cv2.destroyAllWindows()
                 break                

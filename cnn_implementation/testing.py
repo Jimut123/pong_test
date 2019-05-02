@@ -7,7 +7,7 @@ import pyautogui
 
 
 #loading the model
-model = load_model('pong.h5')
+model = load_model('Pong_Thu May  2 08_33_34 2019.h5')
     
 def main():
 
@@ -18,7 +18,7 @@ def main():
     while(True):
         
             # 640x480 windowed mode
-            screen=ImageGrab.grab(bbox=(0,0,800,700))
+            screen=ImageGrab.grab(bbox=(390,290,990,695))
             screen = cv2.cvtColor(np.float32(screen), cv2.COLOR_BGR2GRAY)
             screen = cv2.resize(screen,(64,64))
             screen = screen[np.newaxis,:,:,np.newaxis]
@@ -41,7 +41,7 @@ def main():
                  # do nothing
             elif prediction == 2:
                  pyautogui.keyUp('up')
-                 #time.sleep(.5)
+                 time.sleep(.5)
                  pyautogui.keyDown('down')
                  print('Down')
                  # down
