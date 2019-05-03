@@ -315,10 +315,10 @@ AI.prototype.write_file=function(){
     console.log('reached');
     console.log(data_xs);
     console.log(data_ys);
-    var a = document.getElementById("a");
-    var file = new Blob([JSON.stringify({xs: data_xs, ys: data_ys})], {type: 'application/json'});
-    a.href = URL.createObjectURL(file);
-    a.download = 'training_data.json';
-    a.click();
-    context=null;
+    // var a = document.getElementById("a");
+    // var file = new Blob([JSON.stringify({xs: data_xs, ys: data_ys})], {type: 'application/json'});
+    // a.href = URL.createObjectURL(file);
+    // a.download = 'training_data.json';
+    // a.click();
+    // context=null;
 }
