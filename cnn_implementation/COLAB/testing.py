@@ -7,7 +7,7 @@ import pyautogui
 import time
 # only up and down, no standing!
 #loading the model
-model = load_model('Pong_Thu May  2 16_50_13 2019.h5')
+model = load_model('Pong_Thu May  2 20_19_15 2019.h5')
     
 def main():
 
@@ -34,13 +34,13 @@ def main():
             if prediction == 0:
                pyautogui.keyUp('down')
                start = time.time()
-               while time.time() - start < 0.7:
+               while time.time() - start < 0.01:
                     pyautogui.keyDown('up')
                     print('Up')
             elif prediction == 1:
                pyautogui.keyUp('up')
                start = time.time()
-               while time.time() - start < 0.7:
+               while time.time() - start < 0.01:
                     pyautogui.keyDown('down')
                     print('Down')
                  
