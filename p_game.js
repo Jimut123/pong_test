@@ -316,6 +316,7 @@ AI.prototype.write_file=function(){
         //[0,1,0]=for [1](no change)
         //[0,0,1]=for [0](down)
       }
+<<<<<<< HEAD
     console.log(len);
     console.log('reached');
     console.log(data_xs);
@@ -326,4 +327,16 @@ AI.prototype.write_file=function(){
     // a.download = 'training_data.json';
     // a.click();
     // context=null;
+=======
+      console.log(len);
+      console.log('reached');
+      console.log(data_xs);
+      console.log(data_ys);
+      var a = document.getElementById("a");
+      var file = new Blob([JSON.stringify({xs: data_xs, ys: data_ys})], {type: 'application/json'});
+      a.href = URL.createObjectURL(file);
+      a.download = 'training_data.json';
+      a.click();
+      context=null;
+>>>>>>> master
 }
