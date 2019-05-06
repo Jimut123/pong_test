@@ -99,7 +99,7 @@ Ball.prototype.update = function(paddle1, paddle2) {
     document.getElementById('playerscore').innerHTML = "Player score - "+this.score_player;
     ai.new_turn();
   }
-  if(this.x > 600) { // a point was scored by the ai
+  if(this.x < 0 || this.x > 600) { // a point was scored by the ai
     this.x_speed = 3;
     this.y_speed = 0;
     this.x = 300;
@@ -316,14 +316,14 @@ AI.prototype.write_file=function(){
         //[0,1,0]=for [1](no change)
         //[0,0,1]=for [0](down)
       }
-    console.log(len);
-    console.log('reached');
-    console.log(data_xs);
-    console.log(data_ys);
-    // var a = document.getElementById("a");
-    // var file = new Blob([JSON.stringify({xs: data_xs, ys: data_ys})], {type: 'application/json'});
-    // a.href = URL.createObjectURL(file);
-    // a.download = 'training_data.json';
-    // a.click();
-    // context=null;
+      console.log(len);
+      console.log('reached');
+      console.log(data_xs);
+      console.log(data_ys);
+      var a = document.getElementById("a");
+      var file = new Blob([JSON.stringify({xs: data_xs, ys: data_ys})], {type: 'application/json'});
+      a.href = URL.createObjectURL(file);
+      a.download = 'training_data.json';
+      a.click();
+      context=null;
 }
