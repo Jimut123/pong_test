@@ -1,5 +1,5 @@
 var animate = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestanimationFrame || function (callback) { window.setTimeout(callback, 1000/60) };
-
+var data =0;
 var canvas = document.createElement('canvas');
 var width = 600;
 var height =400;
@@ -128,7 +128,7 @@ Ball.prototype.update = function(paddle1, paddle2){
 var player = new Player();
 var computer = new Computer();
 var ball = new Ball(300,200);
-//var ai = new AI();
+var ai = new AI();
 var keysDown = {};
 window.addEventListener("keydown", function(event) {
   keysDown[event.keyCode] = true;
@@ -203,6 +203,7 @@ function AI(){
     this.keep_trainig_records = true;           // keep some number of training records instead of discardin them each session
     this.training_records_to_keep = 2000;     // number of training records to keep
     this.first_strike = true;
+    this.first_write = true;
 }
 AI.prototype.save_data = function(player, computer, ball){
 
@@ -275,6 +276,7 @@ AI.prototype.write_file=function(){
         
         return;
       }
+      console.log(len);
     for(i = 0; i < 3; i++){
     data_xs.push(...this.training_data[i].slice(0, len)
         .sort(()=>Math.random()-0.5).sort(()=>Math.random()-0.5));      // trims training data to 'len' length and shuffle it
@@ -282,4 +284,15 @@ AI.prototype.write_file=function(){
     //[1,0,0]=for [0](up)
     //[0,1,0]=for [1](no change)
     //[0,0,1]=for [0](down)
+    // Get a reference to the database service
     }
+    data = JSON.stringify({xs: data_xs, ys: data_ys});
+    var database = firebase.database();
+    console.log(database);
+    if(this.first_write){
+        this.first_write = false;
+        var a = document.getElementById('write');
+        a.click();
+    }
+    
+}
