@@ -11,10 +11,11 @@ var mainApp = {};
             uid=null;
             window.location.replace('login.html');
         }
-      });
-    function logOut(){
-        firebase.auth().signOut();
-    }    
-
-    mainApp.logOut = logOut;
+      });  
 })
+function logOut(){
+  firebase.auth().signOut();
+  window.location.replace('login.html');
+
+}
+mainApp.logOut = logOut;
