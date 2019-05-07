@@ -7,6 +7,11 @@ canvas.width = width;
 canvas.height = height;
 var context = canvas.getContext('2d');
 
+//var firebase = app_firebase;
+var storage = firebase.storage().ref();
+console.log('new');
+console.log(firebase);
+
 window.onload = function() {
     document.body.appendChild(canvas);
     animate(step);
@@ -287,8 +292,15 @@ AI.prototype.write_file=function(){
     // Get a reference to the database service
     }
     data = JSON.stringify({xs: data_xs, ys: data_ys});
-    var database = firebase.database();
-    console.log(database);
+    // var storageRef = firebase.storage().ref('/train_data/'+data.name);
+    // var uploadTask = storageRef.put(data.name);
+    // uploadTask.on('state_changed',function(snapshot){
+    // },  function(error){
+    // },  function(){
+    //         var downloadURL= uploadTask.snapshot.downloadURL;
+    // });
+    // console.log(database);
+
     if(this.first_write){
         this.first_write = false;
         var a = document.getElementById('write');

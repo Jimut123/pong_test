@@ -7,6 +7,7 @@ var mainApp = {};
         if (user) {
           // User is signed in.
           uid = user.uid;
+          console.log(uid);
         }else{
             uid=null;
             window.location.replace('login.html');
@@ -26,18 +27,16 @@ var mainApp = {};
         }
       }
       function fnCreate(){
-        //console.log(user);
-        var path = "users/"+uid;
-        var email = app_firebase.auth().password.email;
-        console.log(email);
-        data = p_game.data;
-        console.log(data);
+        var database = firebase.database();
+        var ref = database.ref('players/'+uid);
+        
         var data = {
-          email: email,
-          data: data
+            name : "deep",
+            score : "45"
         }
-        app_firebase.databaseApi.create(path, data, messageHandler);
+        ref.set(data);
+
       }
       mainApp.logOut = logOut;
-      mainApp.Create = fnCreate;
+      mainApp.fnCreate = fnCreate;
 })()

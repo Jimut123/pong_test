@@ -11,21 +11,7 @@ var app_firebase = {};
         messagingSenderId: "1051076549691"
     };
     firebase.initializeApp(config);
-
+    console.log(firebase);
     app_firebase = firebase;
-    
-    function fnCreate(path, body, callBack){
-        
-        if(!path || !body) return
-        app_firebase.database().ref(path).set(body, callBack);
-
-    }
-
-    app_firebase.databaseApi = {
-        create: fnCreate,
-        // read: fnRead,
-        // update : fnUpdate,
-        // delete: fnDelete
-    }
 
 })()
