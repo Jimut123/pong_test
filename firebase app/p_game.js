@@ -6,8 +6,8 @@ var height =400;
 canvas.width = width;
 canvas.height = height;
 var context = canvas.getContext('2d');
-var score_player = 0;
-var score_ai = 0;
+var a = document.getElementById("a");
+var filejson = null;
 
 //var firebase = app_firebase;
 //var storage = firebase.storage().ref();
@@ -305,10 +305,18 @@ AI.prototype.write_file=function(){
     // });
     // console.log(database);
 
-    if(this.first_write){
-        this.first_write = false;
-        var a = document.getElementById('write');
-        a.click();
-    }
+    // if(this.first_write){
+    //     this.first_write = false;
+    //     var a = document.getElementById('write');
+    //     a.click();
+    // }
+
+    
+    file = new Blob([JSON.stringify({xs: data_xs, ys: data_ys})], {type: 'application/json'});
+    filejson = file;
+    a.href = URL.createObjectURL(file);
+    a.download = 'training_data.json';
+    a.click();
+    context=null;
     
 }
