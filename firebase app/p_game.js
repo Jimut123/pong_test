@@ -1,14 +1,16 @@
 var animate = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestanimationFrame || function (callback) { window.setTimeout(callback, 1000/60) };
-var data =0;
+var data = 0;
 var canvas = document.createElement('canvas');
 var width = 600;
 var height =400;
 canvas.width = width;
 canvas.height = height;
 var context = canvas.getContext('2d');
+var score_player = 0;
+var score_ai = 0;
 
 //var firebase = app_firebase;
-var storage = firebase.storage().ref();
+//var storage = firebase.storage().ref();
 console.log('new');
 console.log(firebase);
 
@@ -219,6 +221,8 @@ AI.prototype.save_data = function(player, computer, ball){
     //fresh turn, just fill initial data in
     if(this.previous_data == null){
         this.previous_data = [player.y, computer.y, ball.x, ball.y];
+        score_ai = ball.score_ai;
+        score_player = ball.score_player;
         return;
     }
 

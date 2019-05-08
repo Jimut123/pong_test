@@ -3,10 +3,12 @@ var mainApp = {};
 (function(){
     var firebase = app_firebase;
     var uid = null;
+    var email = null;
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
           uid = user.uid;
+          email = user.email;
           console.log(uid);
         }else{
             uid=null;
@@ -29,10 +31,11 @@ var mainApp = {};
       function fnCreate(){
         var database = firebase.database();
         var ref = database.ref('players/'+uid);
-        
+         
         var data = {
-            name : "deep",
-            score : "45"
+            name : email,
+            player_score : ball.score_player,
+            ai_score : ball.score_ai
         }
         ref.set(data);
 
